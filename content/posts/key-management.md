@@ -20,5 +20,5 @@ Also so important to select the people that going to be key custodians. Do you h
 
 Also, i noticed that when someone leave as a key custodian or a new one will come. It is not always easy to just replace them and you will need the correct procedure for this. In etherium with smart contracts, it was easier and replacement of keys could be made but for bitcoin a new wallet was most likely to be created.
 
-These are some of the lessons learned and in the end i think we managed to setup quite a strong foundation for the crypto exchange to thrive on based on humans and not only on technology. 
+
 
