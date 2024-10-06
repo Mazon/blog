@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>blog.nordiclight.org</title>
-    <link>https://mazon.github.io/</link>
-    <description>Recent content on blog.nordiclight.org</description>
-    <generator>Hugo -- 0.134.2</generator>
+    <title>nordiclight.org</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on nordiclight.org</description>
+    <generator>Hugo -- 0.135.0</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 05 Oct 2024 11:26:05 +0700</lastBuildDate>
-    <atom:link href="https://mazon.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Title</title>
-      <link>https://mazon.github.io/posts/title/</link>
+      <title>Perils of key management</title>
+      <link>http://localhost:1313/posts/key-management/</link>
       <pubDate>Sat, 05 Oct 2024 11:26:05 +0700</pubDate>
-      <guid>https://mazon.github.io/posts/title/</guid>
-      <description>&lt;p&gt;setsetk&lt;/p&gt;</description>
+      <guid>http://localhost:1313/posts/key-management/</guid>
+      <description>&lt;p&gt;When design and reviewing the security of a crypto exchange one of the things that came up was how to secure the users funds in the best way. So started to think about a cold wallet  design. Where just a fraction of the users fund would be online during the day to cover for any withdrawals but most of the funds would be transfered at the end of the day to a cold wallet address that could only be accessed offline by use of multiple key custodians. There are different level of support for multi signature for the biggest crypto currencies that allow  a wallet to be protected by multiple people each having their own private key. The currencies i was dealing with was etherium and bitcoin primarly. There is a lot to say about the technical aspects of this but in this article i mostly focus on the management of keys and lessons learned that can be useful for anyone doing this kind of work.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

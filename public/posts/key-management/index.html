@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Perils of key management | nordiclight.org</title>
+<meta name="keywords" content="">
+<meta name="description" content="When design and reviewing the security of a crypto exchange one of the things that came up was how to secure the users funds in the best way. So started to think about a cold wallet  design. Where just a fraction of the users fund would be online during the day to cover for any withdrawals but most of the funds would be transfered at the end of the day to a cold wallet address that could only be accessed offline by use of multiple key custodians. There are different level of support for multi signature for the biggest crypto currencies that allow  a wallet to be protected by multiple people each having their own private key. The currencies i was dealing with was etherium and bitcoin primarly. There is a lot to say about the technical aspects of this but in this article i mostly focus on the management of keys and lessons learned that can be useful for anyone doing this kind of work.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/posts/key-management/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/key-management/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="nordiclight.org (Alt + H)">nordiclight.org</a>
+            <div class="logo-switches">
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Perils of key management
+    </h1>
+    <div class="post-meta"><span title='2024-10-05 11:26:05 +0700 +07'>October 5, 2024</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>When design and reviewing the security of a crypto exchange one of the things that came up was how to secure the users funds in the best way. So started to think about a cold wallet  design. Where just a fraction of the users fund would be online during the day to cover for any withdrawals but most of the funds would be transfered at the end of the day to a cold wallet address that could only be accessed offline by use of multiple key custodians. There are different level of support for multi signature for the biggest crypto currencies that allow  a wallet to be protected by multiple people each having their own private key. The currencies i was dealing with was etherium and bitcoin primarly. There is a lot to say about the technical aspects of this but in this article i mostly focus on the management of keys and lessons learned that can be useful for anyone doing this kind of work.</p>
+<p>I had the chance to talk to Vitalik Buterin briefly, the creator of etherium about this topic also and while he more focused on the mathematical details of these systems, it still gave some good insights overall. One, he mentioned that &ldquo;mathematical&rdquo; having smaller amounts and divide things into smaller chunks could decrease risk. This can be extrapolated as having smaller wallets also, but also smaller transaction sizes etc. But is a good and most likely quite obvious insight in that you cannot loose what you don&rsquo;t have. The other insight i got from this conversation was that he mention they used Multisig on the etherium foundation wallet and they almost lost access! This stayed with me and will write a little about what can and most likely happens in most cases.</p>
+<p>There was another instance of something that happened later with another wallet outside of this crypto exchange i was involved with. It also had Multisig and was divided between 5 people. Requiring 3/5 to access the funds. 3 of the people was in one company and 2 of the people was in another company. There, also a incident happened that almost stopped large transactions from happening.</p>
+<p>In the case with etherium foundation, while i don&rsquo;t know all details and he only mentioned very short they did have multisig, unsure how many people was needed but it was apperent they almost lost access but finally found the last key needed to unlock and access all thefunds. They later improved on their procedures but it was a close call. Would etherium even excist today if they did not manage?</p>
+<p>In the case with the other wallet, the 3 people from one company refused to cooperate and there was a legal dispute until a deal was reached in the end, allowing the access to funds but during a couple of days. The two founders that started the wallet was locked out.</p>
+<p>I believe with these incidents, the common pattern of only having 2/3 is def not recommended. There are too many unknowns. Such as lost keys, forgotten passwords, disgruntled employees etc. 3/5 is better but is not enough just to have it put in place. The importance of key cermonies where you test the keys are not to be understated. You would need to put in quite a lot of time to really make sure you have the correct key management procedures, the more often the better. Also clear responsibility for anyone of the key custodians to report if they lost, forgot their keys etc. Proper training how to store keys, backup of keys and so on.</p>
+<p>Also so important to select the people that going to be key custodians. Do you have 5 people that are dilligent enough in your organization? It is not always easy to find. You don&rsquo;t want to replace the people too often.</p>
+<p>Also, i noticed that when someone leave as a key custodian or a new one will come. It is not always easy to just replace them and you will need the correct procedure for this. In etherium with smart contracts, it was easier and replacement of keys could be made but for bitcoin a new wallet was most likely to be created.</p>
+<p>These are some of the lessons learned and in the end i think we managed to setup quite a strong foundation for the crypto exchange to thrive on based on humans and not only on technology.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="http://localhost:1313/">nordiclight.org</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+</body>
+
+</html>

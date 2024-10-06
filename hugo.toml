@@ -1,4 +1,8 @@
 baseURL = 'https://mazon.github.io'
 languageCode = 'en-us'
-title = 'nordiclight.org'
+title = 'nordiclight'
 theme = 'PaperMod'
+
+[params]
+  disableThemeToggle = "true"
+
