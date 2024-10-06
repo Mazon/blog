@@ -10,14 +10,13 @@ I had the chance to talk to Vitalik Buterin briefly, the creator of etherium abo
 
 There was another instance of something that happened later with another wallet outside of this crypto exchange i was involved with. It also had Multisig and was divided between 5 people. Requiring 3/5 to access the funds. 3 of the people was in one company and 2 of the people was in another company. There, also a incident happened that almost stopped large transactions from happening. 
 
-In the case with etherium foundation, while i don't know all details i believe they also had 3/5 and one person had forget their key as he never needed to use it, and there was some issue with one more person. Luckily they got the 3 last people to able to successfully access the wallet, if they had not we would most likely would have had another history for etherium. 
+In the case with etherium foundation, while i don't know all details and he only mentioned very short they did have multisig, unsure how many 2/3 or 3/5 and people 1 or 2 had lost access to the wallet. They finally managed to find the neccassary keys needed and since improved.
 
 In the case with the other wallet, the 3 people from one company refused to cooperate and there was a full on legal investigation until a deal was reached in the end, allowing the access to funds but during a couple of days. The 2 founders that started the wallet was locked out. 
 
 I believe with these incidents, the common pattern of only having 2/3 is def not recommended. There are too many unknowns. Such as lost keys, forgotten passwords, disgruntled employees etc. 3/5 is better but is not enough just to have it put in place. The importance of key cermonies where you test the keys are not to be understated. You would need to put in quite a lot of time to really make sure you have the correct key management procedures, the more often the better. Also clear responsibility for anyone of the key custodians to report if they lost, forgot their keys etc. Proper training how to store keys, backup of keys and so on.
 
-Also so important to select the people that going to be key custodians. Do you have 5 people that are dilligent enough in your organization? It is not always easy to find. 
+Also so important to select the people that going to be key custodians. Do you have 5 people that are dilligent enough in your organization? It is not always easy to find. You don't want to replace the people too often.
 
 Also, i noticed that when someone leave as a key custodian or a new one will come. It is not always easy to just replace them and you will need the correct procedure for this. In etherium with smart contracts, it was easier and replacement of keys could be made but for bitcoin a new wallet was most likely to be created.
 
-So will leave you with this, hope some can help to understand that the human aspects are the "key" aspect of key management.
